@@ -1,20 +1,10 @@
 pipeline {
   agent any
-  options { skipDefaultCheckout(true) }
   stages {
-    stage('Force checkout DEV') {
+    stage('Sanity') {
       steps {
-        checkout([$class: 'GitSCM',
-          branches: [[name: '*/DEV']],
-          userRemoteConfigs: [[url: 'https://github.com/pgudiels/BE-Taller.git']]
-        ])
-        bat 'dir'
-        bat 'type Jenkinsfile'
-      }
-    }
-    stage('Run inline sanity') {
-      steps {
-        echo "Inline pipeline running (not from Jenkinsfile in repo)"
+        echo "Hola desde Jenkins - debe verse este mensaje"
+        bat 'echo Current dir & cd'
       }
     }
   }
