@@ -1,9 +1,12 @@
 pipeline {
   agent any
+  options { skipDefaultCheckout(true) }
   stages {
-    stage('Sanity') {
+    stage('Checkout and list') {
       steps {
-        echo "Hola desde Jenkins - debe imprimirse esto"
+        checkout scm
+        bat 'dir'
+        bat 'type Jenkinsfile'
       }
     }
   }
