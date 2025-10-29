@@ -15,9 +15,17 @@ pipeline {
         bat 'mvn -B -q clean verify'
       }
       post {
-        always {
-          junit 'target/surefire-reports/*.xml'
-        }
+        always { junit 'target/surefire-reports/*.xml' }
+      }
+    }
+    stage('SonarQube Analysis') {
+      environment {
+        SONARQUBE_URL = 'http://localhost:9000'
+        SONAR_TOKEN = credentials('SONAR_TOKEN')
+      }
+      steps {
+        bat 'mvn -B -q verify'
+        bat "mvn -B -q sonar:sonar -Dsonar.host.url=%SONARQUBE_URL% -Dsonar.login=%SONAR_TOKEN%"
       }
     }
   }
