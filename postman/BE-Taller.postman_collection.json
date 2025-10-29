@@ -1,0 +1,18 @@
+{
+  "info": { "name": "BE-Taller", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json" },
+  "item": [
+    {
+      "name": "List Cars",
+      "request": { "method": "GET", "url": "{{BASE_URL}}/api/cars" }
+    },
+    {
+      "name": "Create Car",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{BASE_URL}}/api/cars",
+        "body": { "mode": "raw", "raw": "{\n  \"brand\": \"Toyota\",\n  \"model\": \"Corolla\"\n}" }
+      }
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+sonar.projectKey=be-taller
+sonar.projectName=BE Taller
+sonar.sources=src/main/java
+sonar.tests=src/test/java
+sonar.java.binaries=target/classes
+sonar.junit.reportPaths=target/surefire-reports
+sonar.jacoco.reportPaths=target/jacoco.exec
