@@ -12,7 +12,7 @@ pipeline {
       when { environment name: 'SONARQUBE_URL', value: 'http://localhost:9000' }
       environment {
         SONARQUBE_URL = 'http://localhost:9000'
-        SONAR_TOKEN = credentials('SONAR_TOKEN') // crea esta credencial en Jenkins
+        SONAR_TOKEN = credentials('SONAR_TOKEN')
       }
       steps {
         bat 'mvn -B -q verify'
