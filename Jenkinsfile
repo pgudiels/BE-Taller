@@ -1,10 +1,23 @@
 pipeline {
   agent any
+  tools { jdk 'JDK17' }
+  options { skipDefaultCheckout(true) }
   stages {
-    stage('Sanity') {
+    stage('Checkout') {
       steps {
-        echo "Hola desde Jenkins con Sandbox"
-        bat 'echo Estoy en Windows & ver'
+        checkout scm
+        bat 'echo Archivos del repo: && dir'
+      }
+    }
+    stage('Build & Test') {
+      steps {
+        bat 'mvn -version'
+        bat 'mvn -B -q clean verify'
+      }
+      post {
+        always {
+          junit 'target/surefire-reports/*.xml'
+        }
       }
     }
   }
